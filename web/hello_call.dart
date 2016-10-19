@@ -5,6 +5,7 @@ var nodeShow;
 
 void main() {
   querySelector('#getWords').onClick.listen(makeRequest);
+
   nodeShow = querySelector('#nodeShow');
 }
 
@@ -19,11 +20,12 @@ void makeRequest(Event e) {
 
 requestComplete(HttpRequest request) {
   if (request.status == 200) {
-//    List<String> nodelist = JSON.decode(request.responseText);
 Map nodelist = JSON.decode(request.responseText);
-    for (int i = 0; i < nodelist.length; i++) {
-      nodeShow.children.add(new LIElement()..text = nodelist[i]);
-    }
+print(nodelist);
+print(nodelist["01"]);
+
+nodeShow.children.add(new LIElement()..text = nodelist["01"]);
+
   } else {
     nodeShow.children.add(new LIElement()
       ..text = 'Request failed, status=${request.status}');
